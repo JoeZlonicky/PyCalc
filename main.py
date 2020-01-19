@@ -117,6 +117,7 @@ class Display:
     BACKGROUND_COLOR = (51, 57, 65)
     FONT_COLOR = (255, 255, 255)
     BORDER_COLOR = (89, 193, 53)
+    DIGITS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
     def __init__(self):
         """ Create a display """
@@ -154,16 +155,18 @@ class Display:
 
     def parse_text(self):
         """ Attempt to calculate the contents of the display """
-        digits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+        
         temp_text = self.text.replace("x", "*")
         self.text = ""
         i = 0
+        # Handle multiplication through brackts. For example: 6(2) instead of 6*(2)
         while i < len(temp_text):
-            if temp_text[i] in digits:
+            if temp_text[i] in self.DIGITS:
                 if i + 1 < len(temp_text) and temp_text[i+1] == "(":
                     temp_text = temp_text[:(i + 1)] + "*" + temp_text[(i + 1):]
                     i += 2
             i += 1
+        # Attempt to evaluate
         try:
             temp_text = "%.20f" % eval(temp_text)
             for char in temp_text:
