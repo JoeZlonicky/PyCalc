@@ -7,7 +7,7 @@ class Calculator:
     SPACING = 16  # Distance between buttons
     FONT = "Arial"
     SCREEN_WIDTH = 64 * 4 + SPACING * 5
-    SCREEN_HEIGHT = 64 * 4 + SPACING * 6 + 40  # 40 is height of display
+    SCREEN_HEIGHT = 64 * 5 + SPACING * 7 + 40  # 40 is height of display
     LAYOUT = [["C", "<-", "(", ")"],
                ["7", "8", "9", "/"],
                ["4", "5", "6", "x"],
